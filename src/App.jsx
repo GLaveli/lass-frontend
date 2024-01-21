@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-
 import './App.css';
 
 function App() {
@@ -16,7 +15,7 @@ function DataFetcher() {
 
   const fetchData = async () => {
     setLoading(true);
-    let baseUrl = 'http://localhost:3333/api/partnumber/';
+    let baseUrl = 'http://139.216.67.127:3001/api/partnumber/';
     try {
       const response = await axios.get(`${baseUrl}${inputValue}`);
       console.log(response.data);
@@ -40,8 +39,16 @@ function DataFetcher() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={inputValue} onChange={handleInputChange} />
+      <form className='formContainer' onSubmit={handleSubmit}>
+        <div className="input-container">
+          <input 
+            className='partnumberField' 
+            type="text" 
+            value={inputValue} 
+            onChange={handleInputChange} 
+          />
+          <label className={inputValue && 'filled'}>Insert partnumber</label>
+        </div>
         <button type="submit">Buscar</button>
       </form>
       {loading ? (
